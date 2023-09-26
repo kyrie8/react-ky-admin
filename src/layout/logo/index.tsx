@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import styles from './index.module.scss'
 import antdImg from '@/assets/antd.svg'
 import { theme } from 'antd'

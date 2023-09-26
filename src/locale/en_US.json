@@ -1,3 +1,12 @@
 {
-  "你好": "hello"
+  "你好": "hello",
+  "首页": "home page",
+  "系统管理": "System Manage",
+  "用户管理": "User Manage",
+  "菜单管理": "Menu Manage",
+  "角色管理": "Role Manage",
+  "部门管理": "Dept Manage",
+  "个人中心": "Personal Center",
+  "设置": "Setting",
+  "退出": "Exit"
 }

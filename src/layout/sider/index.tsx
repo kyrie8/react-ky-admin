@@ -7,6 +7,9 @@ import useUserInfo from '@/store/userUserInfo'
 
 import type { IMenu } from '@/mock'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { TFunction } from 'i18next'
+import useUserCustomStore from '@/store/useUserCustom'
 type IIcons = {
   [key: string]: unknown
 }
@@ -14,7 +17,7 @@ type MenuItem = Required<MenuProps>['items'][number]
 
 const { Sider } = Layout
 
-function getMenus(menuList: IMenu) {
+function getMenus(t: TFunction<'translation', undefined>, menuList: IMenu) {
   const res: MenuItem[] = []
   menuList.forEach((item) => {
     const Icon = (Icons as IIcons)[item.icon]
@@ -23,15 +26,15 @@ function getMenus(menuList: IMenu) {
         key: item.path,
         label: item.isOutLink ? (
           <a href={item.path} target="_blank" rel="noreferrer">
-            {item.name}
+            {t(item.name)}
           </a>
         ) : (
-          item.name
+          t(item.name)
         ),
         icon: React.createElement(Icon as string),
         children:
           item.children && item.children.length
-            ? [...getMenus(item.children)]
+            ? [...getMenus(t, item.children)]
             : undefined
       })
     }
@@ -51,11 +54,16 @@ function getSelectedKey(path: string) {
 }
 
 const MySider: React.FC = () => {
+  const { t } = useTranslation()
+  const { language } = useUserCustomStore()
   const navigate = useNavigate()
   const path = useLocation()
   const [collapsed, setCollapsed] = useState(false)
   const { menuList } = useUserInfo()
-  const menu: MenuItem[] = useMemo(() => getMenus(menuList), [menuList])
+  const menu: MenuItem[] = useMemo(
+    () => getMenus(t, menuList),
+    [menuList, language]
+  )
   const [defaultSelectedKeys] = useState<string[]>([path.pathname])
   const defaultOpenKeys = useMemo(() => getSelectedKey(path.pathname), [])
 
@@ -65,7 +73,7 @@ const MySider: React.FC = () => {
 
   return (
     <Sider
-      theme="light"
+      theme="dark"
       style={{ height: '100vh' }}
       collapsible
       collapsed={collapsed}
@@ -78,6 +86,7 @@ const MySider: React.FC = () => {
         onClick={handleMenuClick}
         mode="inline"
         items={menu}
+        theme="dark"
       />
     </Sider>
   )

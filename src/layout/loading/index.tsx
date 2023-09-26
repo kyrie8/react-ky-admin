@@ -3,9 +3,7 @@ import styles from './index.module.scss'
 const Loading = () => {
   return (
     <div className={styles['loading-wrap']}>
-      <Spin wrapperClassName={styles['loading-wrap']} size="default">
-        {/* <div>Loading</div> */}
-      </Spin>
+      <Spin wrapperClassName={styles['loading-wrap']} size="default" />
     </div>
   )
 }

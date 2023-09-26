@@ -4,17 +4,17 @@ import { initReactI18next } from 'react-i18next'
 import enUS from './en_US.json'
 import zhCN from './zh_CN.json'
 const resources = {
-  en_US: {
+  enUS: {
     translation: enUS
   },
-  zh_CN: {
+  zhCN: {
     translation: zhCN
   }
 }
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'zh_CN',
+  lng: 'zhCN',
   interpolation: {
     escapeValue: false // react already safes from xss
   }

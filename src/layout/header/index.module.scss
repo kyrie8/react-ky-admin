@@ -1,0 +1,22 @@
+.header-wrap {
+  background: #fff;
+  padding: 0 20px;
+  .right {
+    float: right;
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    &-space {
+      line-height: 64px;
+      cursor: pointer;
+    }
+    &-languages-icon {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      line-height: 64px;
+      height: 64px;
+      cursor: pointer;
+    }
+  }
+}
