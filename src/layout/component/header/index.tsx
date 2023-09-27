@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Avatar, Dropdown, Layout, Space } from 'antd'
 const { Header } = Layout
+import MySettingDrawer from '../settingDrawer'
 
 import styles from './index.module.scss'
 import { TranslationOutlined, UserOutlined } from '@ant-design/icons'
@@ -22,9 +23,11 @@ const languagesItems: MenuProps['items'] = [
 const MyHeader: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { setLanguage } = useUserCustomStore()
+  const [open, setOpen] = useState(false)
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case '1':
+        setOpen(true)
         break
       case 'zhCN':
       case 'enUS':
@@ -52,6 +55,12 @@ const MyHeader: React.FC = () => {
       key: '3'
     }
   ]
+  const handleCloseDrawer = useCallback(
+    (v: boolean) => {
+      setOpen(v)
+    },
+    [open]
+  )
   return (
     <Header className={styles['header-wrap']}>
       <div className={styles.right}>
@@ -75,6 +84,10 @@ const MyHeader: React.FC = () => {
           </Dropdown>
         </div>
       </div>
+      <MySettingDrawer
+        setOpen={handleCloseDrawer}
+        open={open}
+      ></MySettingDrawer>
     </Header>
   )
 }

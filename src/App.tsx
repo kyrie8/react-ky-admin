@@ -4,7 +4,8 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import type { Locale } from 'antd/es/locale'
-import Loading from './layout/loading'
+import zhCN from 'antd/locale/zh_CN'
+import Loading from './layout/component/loading'
 
 import useUserCustomStore from './store/useUserCustom'
 import useUserInfo from './store/userUserInfo'
@@ -17,7 +18,7 @@ function App() {
   const { color } = useUserCustomStore()
   const { menuList } = useUserInfo()
   const { language } = useUserCustomStore()
-  const [locale, setLocal] = useState<Locale>()
+  const [locale, setLocal] = useState<Locale>(zhCN)
   useEffect(() => {
     const res = getFlattenRoutes(menuList)
     router.routes[0].children = res.map(

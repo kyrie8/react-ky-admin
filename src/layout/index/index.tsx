@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react'
 import { Layout, theme } from 'antd'
-import MySider from '../sider'
-import Footer from '../footer'
-import MyHeader from '../header'
-import MyBreadcrumb from '../breadcrumb'
+import MySider from '../component/sider'
+import Footer from '../component/footer'
+import MyHeader from '../component/header'
+import MyBreadcrumb from '../component/breadcrumb'
 import { Outlet } from 'react-router-dom'
-import Loading from '../loading'
+import Loading from '../component/loading'
 const { Content } = Layout
 
 const App: React.FC = () => {
