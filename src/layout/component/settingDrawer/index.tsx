@@ -12,7 +12,12 @@ const MySettingDrawer: React.FC<IProps> = (props: IProps) => {
   const { open, closable, setOpen } = props
   const { color, setColor } = useUserCustomStore()
   return (
-    <Drawer open={open} onClose={() => setOpen(false)} closable={closable}>
+    <Drawer
+      destroyOnClose
+      open={open}
+      onClose={() => setOpen(false)}
+      closable={closable}
+    >
       <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
         <div className="overall-style">
           <h3>整体风格设置</h3>
@@ -20,7 +25,6 @@ const MySettingDrawer: React.FC<IProps> = (props: IProps) => {
         <div className="overall-theme">
           <h3>主题色</h3>
           <ColorPicker
-            destroyTooltipOnHide
             value={color}
             onChangeComplete={(color) => {
               setColor(color.toHexString())

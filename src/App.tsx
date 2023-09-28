@@ -18,6 +18,7 @@ function App() {
   const { color } = useUserCustomStore()
   const { menuList } = useUserInfo()
   const { language } = useUserCustomStore()
+  const [loading, setLoading] = useState(true)
   const [locale, setLocal] = useState<Locale>(zhCN)
   useEffect(() => {
     const res = getFlattenRoutes(menuList)
@@ -28,10 +29,14 @@ function App() {
           Component: lazy(module[`../${item.element}.tsx`] as any)
         }) as any
     )
+    setLoading(false)
   }, [menuList])
   useEffect(() => {
     setLocal(languageORM[language])
   }, [language])
+  // if (loading) {
+  //   return <Loading></Loading>
+  // }
   return (
     <ConfigProvider
       theme={{
@@ -41,9 +46,11 @@ function App() {
       }}
       locale={locale}
     >
-      <Suspense fallback={<Loading></Loading>}>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
         <RouterProvider router={router}></RouterProvider>
-      </Suspense>
+      )}
     </ConfigProvider>
   )
 }
