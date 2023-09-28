@@ -59,7 +59,7 @@ const MenuList = [
     ]
   }
 ]
-const getMenu = () => {
+const getMenu: () => Promise<IMenu> = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(MenuList)

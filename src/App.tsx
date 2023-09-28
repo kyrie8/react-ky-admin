@@ -1,7 +1,6 @@
 // import { useEffect } from 'react'
 
 import { lazy, useEffect, useState } from 'react'
-import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import type { Locale } from 'antd/es/locale'
 import zhCN from 'antd/locale/zh_CN'
@@ -35,7 +34,6 @@ function App() {
   useEffect(() => {
     setLocal(languageORM[language])
   }, [language])
-  const element = useRoutes(router)
   return (
     <ConfigProvider
       theme={{
@@ -45,13 +43,7 @@ function App() {
       }}
       locale={locale}
     >
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <AuthRouter>
-          <>{element}</>
-        </AuthRouter>
-      )}
+      {loading ? <Loading></Loading> : <AuthRouter router={router} />}
     </ConfigProvider>
   )
 }

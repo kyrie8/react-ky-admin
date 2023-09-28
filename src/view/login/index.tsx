@@ -3,15 +3,17 @@ import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
 import useUserInfo from '@/store/userUserInfo'
 
-import { MenuList } from '@/mock'
+import { getMenu } from '@/mock'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { setMenuLilt } = useUserInfo()
-  const onFinish = () => {
-    setMenuLilt(MenuList)
-
-    navigate('/home')
+  const { setMenuLilt, setToken } = useUserInfo()
+  const onFinish = async () => {
+    const menu = await getMenu()
+    setToken('token')
+    setMenuLilt(menu).then(() => {
+      navigate('/home')
+    })
   }
   return (
     <div className={styles['login-wrap']}>

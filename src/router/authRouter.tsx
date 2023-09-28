@@ -1,19 +1,35 @@
 import useUserInfo from '@/store/userUserInfo'
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import {
+  RouteObject,
+  useLocation,
+  useNavigate,
+  useRoutes
+} from 'react-router-dom'
 import { message } from 'antd'
 
 import WhiteRouter from './whiteRouter'
 interface IProps {
-  children: JSX.Element
+  router: RouteObject[]
+}
+
+function findRoutePath(routes: RouteObject[], path: string) {
+  for (const val of routes) {
+    if (val.path === path) {
+      return true
+    }
+    if (val.children && val.children.length) {
+      return findRoutePath(val.children, path)
+    }
+  }
+  return null
 }
 
 const AuthRouter: React.FC<IProps> = (props: IProps) => {
-  const { children } = props
+  const { router } = props
   const { token } = useUserInfo()
   const path = useLocation()
   const navigate = useNavigate()
-
   useEffect(() => {
     if (path.pathname === '/login') {
       navigate(path.pathname)
@@ -27,16 +43,15 @@ const AuthRouter: React.FC<IProps> = (props: IProps) => {
         navigate('/login')
       }
     } else {
-      // const is = true
-      // if (is) {
-      //   message.error('无权访问', 3)
-      //   navigate(-1)
-      //   return
-      // }
-      navigate(path.pathname)
+      const hasPath = findRoutePath(router, path.pathname)
+      if (hasPath) {
+        navigate(path.pathname)
+      } else {
+        navigate('/404')
+      }
     }
   }, [path.pathname])
-  return children
+  return useRoutes(router)
 }
 
 export default AuthRouter
