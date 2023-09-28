@@ -1,7 +1,7 @@
 // import { useEffect } from 'react'
 
-import { Suspense, lazy, useEffect, useState } from 'react'
-import { RouterProvider } from 'react-router-dom'
+import { lazy, useEffect, useState } from 'react'
+import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import type { Locale } from 'antd/es/locale'
 import zhCN from 'antd/locale/zh_CN'
@@ -13,6 +13,7 @@ import useUserInfo from './store/userUserInfo'
 import router from './router'
 
 import { getFlattenRoutes, module, languageORM } from './utils'
+import AuthRouter from './router/authRouter'
 
 function App() {
   const { color } = useUserCustomStore()
@@ -22,7 +23,7 @@ function App() {
   const [locale, setLocal] = useState<Locale>(zhCN)
   useEffect(() => {
     const res = getFlattenRoutes(menuList)
-    router.routes[0].children = res.map(
+    router[0].children = res.map(
       (item) =>
         ({
           path: item.path,
@@ -34,9 +35,7 @@ function App() {
   useEffect(() => {
     setLocal(languageORM[language])
   }, [language])
-  // if (loading) {
-  //   return <Loading></Loading>
-  // }
+  const element = useRoutes(router)
   return (
     <ConfigProvider
       theme={{
@@ -49,7 +48,9 @@ function App() {
       {loading ? (
         <Loading></Loading>
       ) : (
-        <RouterProvider router={router}></RouterProvider>
+        <AuthRouter>
+          <>{element}</>
+        </AuthRouter>
       )}
     </ConfigProvider>
   )

@@ -22,9 +22,7 @@ const AuthRouter: React.FC<IProps> = (props: IProps) => {
     if (!token) {
       const hasWhite = WhiteRouter.some((item) => item.path === path.pathname)
       if (hasWhite) {
-        setTimeout(() => {
-          navigate(path.pathname)
-        }, 2000)
+        navigate(path.pathname)
       } else {
         navigate('/login')
       }

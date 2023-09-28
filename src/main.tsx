@@ -5,5 +5,12 @@ import 'normalize.css'
 import './index.css'
 
 import './locale'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App></App>)
+const root = document.getElementById('root') as HTMLElement
+
+ReactDOM.createRoot(root).render(
+  <BrowserRouter>
+    <App></App>
+  </BrowserRouter>
+)
