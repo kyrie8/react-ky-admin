@@ -5,7 +5,7 @@ import { message } from 'antd'
 
 import WhiteRouter from './whiteRouter'
 interface IProps {
-  children: JSX.Element
+  children: React.ReactNode
 }
 
 const AuthRouter: React.FC<IProps> = (props: IProps) => {
@@ -22,19 +22,11 @@ const AuthRouter: React.FC<IProps> = (props: IProps) => {
     if (!token) {
       const hasWhite = WhiteRouter.some((item) => item.path === path.pathname)
       if (hasWhite) {
-        setTimeout(() => {
-          navigate(path.pathname)
-        }, 2000)
+        navigate(path.pathname)
       } else {
         navigate('/login')
       }
     } else {
-      // const is = true
-      // if (is) {
-      //   message.error('无权访问', 3)
-      //   navigate(-1)
-      //   return
-      // }
       navigate(path.pathname)
     }
   }, [path.pathname])

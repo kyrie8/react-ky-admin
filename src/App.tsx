@@ -13,6 +13,7 @@ import useUserInfo from './store/userUserInfo'
 import router from './router'
 
 import { getFlattenRoutes, module, languageORM } from './utils'
+import AuthRouter from './router/authRouter'
 
 function App() {
   const { color } = useUserCustomStore()
@@ -34,9 +35,6 @@ function App() {
   useEffect(() => {
     setLocal(languageORM[language])
   }, [language])
-  // if (loading) {
-  //   return <Loading></Loading>
-  // }
   return (
     <ConfigProvider
       theme={{

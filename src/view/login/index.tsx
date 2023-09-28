@@ -7,10 +7,10 @@ import { MenuList } from '@/mock'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { setMenuLilt } = useUserInfo()
+  const { setMenuLilt, setToken } = useUserInfo()
   const onFinish = () => {
     setMenuLilt(MenuList)
-
+    setToken('token')
     navigate('/home')
   }
   return (
