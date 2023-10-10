@@ -8,6 +8,7 @@ import styles from './index.module.scss'
 import { TranslationOutlined, UserOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import useUserCustomStore from '@/store/useUserCustom'
+import { useNavigate } from 'react-router-dom'
 
 const languagesItems: MenuProps['items'] = [
   {
@@ -24,10 +25,14 @@ const MyHeader: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { setLanguage } = useUserCustomStore()
   const [open, setOpen] = useState(false)
+  const nav = useNavigate()
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case '1':
         setOpen(true)
+        break
+      case '3':
+        nav('/login')
         break
       case 'zhCN':
       case 'enUS':
