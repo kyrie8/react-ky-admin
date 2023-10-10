@@ -13,11 +13,11 @@ import { useNavigate } from 'react-router-dom'
 const languagesItems: MenuProps['items'] = [
   {
     label: 'cn 简体中文',
-    key: 'zhCN'
+    key: 'zh-cn'
   },
   {
     label: 'us English英文',
-    key: 'enUS'
+    key: 'en'
   }
 ]
 
@@ -34,8 +34,8 @@ const MyHeader: React.FC = () => {
       case '3':
         nav('/login')
         break
-      case 'zhCN':
-      case 'enUS':
+      case 'zh-cn':
+      case 'en':
         setLanguage(key)
         i18n.changeLanguage(key)
         break

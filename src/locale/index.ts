@@ -4,10 +4,10 @@ import { initReactI18next } from 'react-i18next'
 import enUS from './en_US.json'
 import zhCN from './zh_CN.json'
 const resources = {
-  enUS: {
+  en: {
     translation: enUS
   },
-  zhCN: {
+  'zh-cn': {
     translation: zhCN
   }
 }

@@ -12,7 +12,7 @@ const useUserCustomStore = create<ICustom>()(
   persist(
     (set) => ({
       color: '#1677ff',
-      language: 'zhCN',
+      language: 'zh-cn',
       setColor: (color) => set(() => ({ color })),
       setLanguage: (language) => set(() => ({ language }))
     }),

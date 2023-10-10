@@ -8,7 +8,6 @@ import { Outlet } from 'react-router-dom'
 const { Content } = Layout
 
 import styles from './index.module.scss'
-import AuthRouter from '@/router/authRouter'
 
 const App: React.FC = () => {
   const {

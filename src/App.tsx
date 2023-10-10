@@ -1,10 +1,12 @@
 // import { useEffect } from 'react'
 
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { lazy, useEffect, useState } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
+import dayjs from 'dayjs'
 import type { Locale } from 'antd/es/locale'
 import zhCN from 'antd/locale/zh_CN'
+import 'dayjs/locale/zh-cn'
 import Loading from './layout/component/loading'
 
 import useUserCustomStore from './store/useUserCustom'
@@ -13,8 +15,7 @@ import useUserInfo from './store/userUserInfo'
 import router from './router'
 
 import { getFlattenRoutes, module, languageORM } from './utils'
-import AuthRouter from './router/authRouter'
-
+// dayjs.locale('en')
 function App() {
   const { color } = useUserCustomStore()
   const { menuList } = useUserInfo()
@@ -33,6 +34,7 @@ function App() {
     setLoading(false)
   }, [menuList])
   useEffect(() => {
+    dayjs.locale(language)
     setLocal(languageORM[language])
   }, [language])
   return (

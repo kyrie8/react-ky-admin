@@ -25,6 +25,6 @@ export function getFlattenRoutes(menuList: IMenu) {
 export const module = import.meta.glob('../view/*/index.tsx')
 
 export const languageORM: Record<string, any> = {
-  zhCN: zhCN,
-  enUS: enUS
+  'zh-cn': zhCN,
+  en: enUS
 }
