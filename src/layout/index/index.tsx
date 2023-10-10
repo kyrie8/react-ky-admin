@@ -18,29 +18,27 @@ const App: React.FC = () => {
   return (
     <Layout>
       <MySider></MySider>
-      <Layout>
-        <Suspense
-          fallback={
-            <div className={styles['page-loading-wrap']}>
-              <Spin size="large" />
-            </div>
-          }
-        >
-          <MyHeader />
-          <Content style={{ margin: '0 16px' }}>
-            <MyBreadcrumb></MyBreadcrumb>
-            <div
-              style={{
-                padding: 24,
-                background: colorBgContainer
-              }}
+      <Layout className={styles['layout-wrap']}>
+        <MyHeader />
+        <Content style={{ margin: '0 16px' }}>
+          <MyBreadcrumb></MyBreadcrumb>
+          <div
+            style={{
+              padding: 24,
+              background: colorBgContainer
+            }}
+          >
+            <Suspense
+              fallback={
+                <div className={styles['page-loading-wrap']}>
+                  <Spin size="large" />
+                </div>
+              }
             >
-              <AuthRouter>
-                <Outlet></Outlet>
-              </AuthRouter>
-            </div>
-          </Content>
-        </Suspense>
+              <Outlet></Outlet>
+            </Suspense>
+          </div>
+        </Content>
         <Footer></Footer>
       </Layout>
     </Layout>
