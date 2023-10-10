@@ -6,7 +6,9 @@ export default function NotFound() {
   return (
     <div className={styles['not-found-wrap']}>
       <span>not found</span>
-      <Button onClick={() => nav(-1)}>返回</Button>
+      <Button type="primary" onClick={() => nav(-1)}>
+        返回
+      </Button>
     </div>
   )
 }

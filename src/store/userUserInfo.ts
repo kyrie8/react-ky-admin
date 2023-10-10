@@ -7,7 +7,7 @@ import type { IMenu } from '@/mock'
 interface IUserInfo {
   token: string
   menuList: IMenu
-  setMenuLilt: (menu: IMenu) => void
+  setMenuLilt: (menu: IMenu) => Promise<boolean>
   setToken: (token: string) => void
 }
 const useUserInfo = create<IUserInfo>()(
@@ -16,13 +16,11 @@ const useUserInfo = create<IUserInfo>()(
       token: '是大放声大哭',
       menuList: [],
       setMenuLilt: (menu) =>
-        set(() => ({
-          menuList: menu
-        })),
-      setToken: (token) =>
-        set(() => ({
-          token
-        }))
+        new Promise((resolve) => {
+          set({ menuList: menu })
+          resolve(true)
+        }),
+      setToken: (token) => set({ token })
     }),
     { name: 'userInfo' }
   )

@@ -8,8 +8,8 @@ import { MenuList } from '@/mock'
 export default function Login() {
   const navigate = useNavigate()
   const { setMenuLilt, setToken } = useUserInfo()
-  const onFinish = () => {
-    setMenuLilt(MenuList)
+  const onFinish = async () => {
+    await setMenuLilt(MenuList)
     setToken('token')
     navigate('/home')
   }
