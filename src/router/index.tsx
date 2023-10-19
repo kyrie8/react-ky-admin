@@ -10,7 +10,7 @@ function Redirect() {
   if (menuList && menuList.length) {
     return <Navigate to="/home" replace />
   } else {
-    return <Navigate to="/home" replace />
+    return <Navigate to="/login" replace />
   }
 }
 
