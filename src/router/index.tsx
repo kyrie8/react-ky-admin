@@ -1,15 +1,25 @@
 import WhiteRouter from './whiteRouter'
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Layout from '../layout/index'
 import Login from '../view/login/index.tsx'
 import NotFound from '@/view/notFound'
+import useUserInfo from '@/store/userUserInfo.ts'
+
+function Redirect() {
+  const { menuList } = useUserInfo()
+  if (menuList && menuList.length) {
+    return <Navigate to="/home" replace />
+  } else {
+    return <Navigate to="/home" replace />
+  }
+}
 
 const customRoutes = [
   {
-    path: '/',
     Component: Layout,
     children: []
   },
+  { path: '/', Component: Redirect },
   {
     path: '/login',
     Component: Login

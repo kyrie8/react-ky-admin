@@ -44,6 +44,7 @@ function getMenus(t: TFunction<'translation', undefined>, menuList: IMenu) {
 
 function getSelectedKey(path: string) {
   const pathArr = path.slice(1).split('/')
+  console.log('234', pathArr)
   const res = []
   if (pathArr.length > 1) {
     for (let index = 0; index < pathArr.length - 1; index++) {
@@ -68,6 +69,7 @@ const MySider: React.FC = () => {
   const defaultOpenKeys = useMemo(() => getSelectedKey(path.pathname), [])
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
+    console.log('key', key)
     navigate(key)
   }
 
